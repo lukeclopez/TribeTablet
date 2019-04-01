@@ -9,10 +9,9 @@ class Tribe:
 
         # *** Tribe Status ***
         self.faithfulness = 0
-        self.spiritual_prayer = 0
-        self.conquest_prayer = 0
+        self.spiritual_prayer = 10
+        self.conquest_prayer = 10
         self.is_faithful = True
-
 
 
 judah = Tribe("Judah", 5, 4)

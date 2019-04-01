@@ -1,9 +1,35 @@
 {% extends "base.html" %}
 
 {% block title %}
-Jashar
+{{ chosen_tribe.name }} - Jashar
 {% endblock %}
 
 {% block body %}
-    {{ tribe }}
+
+<h1>{{ chosen_tribe.name }}</h1>
+<hr>
+<div class="row">
+    <div class="col s12 m6 l3" style="border: 2px solid #616161;">
+        <div>Troops: {{ chosen_tribe.troops }}</div>
+        <div>Levites: {{ chosen_tribe.levites }}</div>
+        <div class="green-text">{{ chosen_tribe.pro }}</div>
+        <div class="red-text">{{ chosen_tribe.con }}</div>
+    </div>
+        <div class="col s12 m6 l9">
+            <form action="#">
+                <p class="range-field">
+                    <label>Spiritual Prayer {{ chosen_tribe.spiritual_prayer }}/10</label>
+                    <input type="range" id="slider-sp" min="0" value="{{ chosen_tribe.spiritual_prayer }}" max="10"/>
+                    <label>Faithfulness {{ chosen_tribe.faithfulness }}/6</label>
+                    <input type="range" id="slider-f" min="-6" value="{{ chosen_tribe.faithfulness }}" max="6" />
+                    <label>Conquest Prayer {{ chosen_tribe.conquest_prayer }}/10</label>
+                    <input type="range" id="slider-cp" min="0" value="{{ chosen_tribe.conquest_prayer }}" max="10" />
+                </p>
+                <div>Tribe is Faithful: {{ chosen_tribe.is_faithful }}</div>
+            </form>
+        </div>
+</div>
+
+
+
 {% endblock %}

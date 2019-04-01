@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import tribes
 
 app = Flask(__name__)
 
@@ -10,8 +11,11 @@ def index():
 
 @app.route("/play", methods=['POST'])
 def play():
-    tribe = request.form['tribe']
+    chosen_tribe = None
+    for tribe in tribes.tribes_list:
+        if tribe.name == request.form['tribe']:
+            chosen_tribe = tribe
     return render_template("play.html",
-                           tribe=tribe,
+                           chosen_tribe=chosen_tribe,
                            )
 
