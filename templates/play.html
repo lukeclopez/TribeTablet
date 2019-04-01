@@ -6,28 +6,64 @@
 
 {% block body %}
 
-<h1>{{ chosen_tribe.name }}</h1>
-<hr>
 <div class="row">
     <div class="col s12 m6 l3" style="border: 2px solid #616161;">
+        <h5>{{ chosen_tribe.name }}</h5>
         <div>Troops: {{ chosen_tribe.troops }}</div>
         <div>Levites: {{ chosen_tribe.levites }}</div>
         <div class="green-text">{{ chosen_tribe.pro }}</div>
         <div class="red-text">{{ chosen_tribe.con }}</div>
     </div>
-        <div class="col s12 m6 l9">
-            <form action="#">
-                <p class="range-field">
-                    <label>Spiritual Prayer {{ chosen_tribe.spiritual_prayer }}/10</label>
-                    <input type="range" id="slider-sp" min="0" value="{{ chosen_tribe.spiritual_prayer }}" max="10"/>
-                    <label>Faithfulness {{ chosen_tribe.faithfulness }}/6</label>
-                    <input type="range" id="slider-f" min="-6" value="{{ chosen_tribe.faithfulness }}" max="6" />
-                    <label>Conquest Prayer {{ chosen_tribe.conquest_prayer }}/10</label>
-                    <input type="range" id="slider-cp" min="0" value="{{ chosen_tribe.conquest_prayer }}" max="10" />
-                </p>
+    <div class="col s12 m6 l9">
+        <form action="#">
+                <label>Spiritual Prayer {{ chosen_tribe.spiritual_prayer }}/10</label>
+                <input type="range" id="slider-sp" min="0" value="{{ chosen_tribe.spiritual_prayer }}" max="10"/>
+                <label>Faithfulness {{ chosen_tribe.faithfulness }}/6</label>
+                <input type="range" id="slider-f" min="-6" value="{{ chosen_tribe.faithfulness }}" max="6" />
+                <label>Conquest Prayer {{ chosen_tribe.conquest_prayer }}/10</label>
+                <input type="range" id="slider-cp" min="0" value="{{ chosen_tribe.conquest_prayer }}" max="10" />
                 <div>Tribe is Faithful: {{ chosen_tribe.is_faithful }}</div>
-            </form>
-        </div>
+
+                <label>Teach Law</label>
+                <div class="row">
+                    <div class="col s4 m4 l4"><button class="btn">-</button></div>
+                    <div class="col s4 m4 l4"><span id="levites-tl">0</span></div>
+                    <div class="col s4 m4 l4"><button class="btn">+</button></div>
+                </div>
+
+                <label>Spiritual Prayer</label>
+                <div class="row">
+                    <div class="col s4 m4 l4"><button class="btn">-</button></div>
+                    <div class="col s4 m4 l4"><span id="levites-sp">0</span></div>
+                    <div class="col s4 m4 l4"><button class="btn">+</button></div>
+                </div>
+
+                <label>Conquest Prayer</label>
+                <div class="row">
+                    <div class="col s4 m4 l4"><button class="btn">-</button></div>
+                    <div class="col s4 m4 l4"><span id="levites-cp">0</span></div>
+                    <div class="col s4 m4 l4"><button class="btn">+</button></div>
+                </div>
+
+                <label>Sing Praises</label>
+                <div class="row">
+                    <div class="col s4 m4 l4"><button class="btn">-</button></div>
+                    <div class="col s4 m4 l4"><span id="levites-s">0</span></div>
+                    <div class="col s4 m4 l4"><button class="btn">+</button></div>
+                </div>
+
+
+                <label>Seek Direction</label>
+                  <div class="switch">
+                    <label>
+                      0
+                      <input id="seek_direction" type="checkbox">
+                      <span class="lever"></span>
+                      1
+                    </label>
+                  </div>
+        </form>
+    </div>
 </div>
 
 
