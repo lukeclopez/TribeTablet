@@ -1,11 +1,18 @@
 class Tribe:
     def __init__(self, name, troops, levites):
+        # *** Tribe Info ***
         self.name = name
         self.troops = troops
         self.levites = levites
-
         self.pro = ""
         self.con = ""
+
+        # *** Tribe Status ***
+        self.faithfulness = 0
+        self.spiritual_prayer = 0
+        self.conquest_prayer = 0
+        self.is_faithful = True
+
 
 
 judah = Tribe("Judah", 5, 4)
@@ -23,3 +30,5 @@ naphtali.con = "Small tribe"
 zebulun = Tribe("Zebulun", 4, 5)
 zebulun.pro = "Teaching the law x2 when tribe unfaithful"
 zebulun.con = "None"
+
+tribes_list = [judah, gad, naphtali, zebulun]
