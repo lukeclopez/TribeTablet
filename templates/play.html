@@ -7,7 +7,7 @@
 {% block body %}
 
 <div class="row">
-    <div class="col s12 m6 l3" style="border: 2px solid #616161;">
+    <div class="col s12 m6 l3">
         <h5>{{ chosen_tribe.name }}</h5>
         <div>Troops: {{ chosen_tribe.troops }}</div>
         <div>Levites: {{ chosen_tribe.levites }}</div>
@@ -22,50 +22,85 @@
                 <input type="range" id="slider-f" min="-6" value="{{ chosen_tribe.faithfulness }}" max="6" />
                 <label>Conquest Prayer {{ chosen_tribe.conquest_prayer }}/10</label>
                 <input type="range" id="slider-cp" min="0" value="{{ chosen_tribe.conquest_prayer }}" max="10" />
-                <div>Tribe is Faithful: {{ chosen_tribe.is_faithful }}</div>
+
+                <h6>Tribe is Faithful: <span id="is-faithful">{{ chosen_tribe.is_faithful }}</span></h6>
+                <h6>Free Levites: <span id="free-levites">{{ chosen_tribe.levites }}</span></h6>
 
                 <label>Teach Law</label>
                 <div class="row">
-                    <div class="col s4 m4 l4"><button class="btn">-</button></div>
+                    <div class="col s4 m4 l4"><button class="btn" onclick="assign('tl', false)">-</button></div>
                     <div class="col s4 m4 l4"><span id="levites-tl">0</span></div>
-                    <div class="col s4 m4 l4"><button class="btn">+</button></div>
+                    <div class="col s4 m4 l4"><button class="btn" onclick="assign('tl', true)">+</button></div>
                 </div>
 
                 <label>Spiritual Prayer</label>
                 <div class="row">
-                    <div class="col s4 m4 l4"><button class="btn">-</button></div>
+                    <div class="col s4 m4 l4"><button class="btn" onclick="assign('sp', false)">-</button></div>
                     <div class="col s4 m4 l4"><span id="levites-sp">0</span></div>
-                    <div class="col s4 m4 l4"><button class="btn">+</button></div>
+                    <div class="col s4 m4 l4"><button class="btn" onclick="assign('sp', true)">+</button></div>
                 </div>
 
                 <label>Conquest Prayer</label>
                 <div class="row">
-                    <div class="col s4 m4 l4"><button class="btn">-</button></div>
+                    <div class="col s4 m4 l4"><button class="btn" onclick="assign('cp', false)">-</button></div>
                     <div class="col s4 m4 l4"><span id="levites-cp">0</span></div>
-                    <div class="col s4 m4 l4"><button class="btn">+</button></div>
+                    <div class="col s4 m4 l4"><button class="btn"onclick="assign('cp', true)">+</button></div>
                 </div>
 
                 <label>Sing Praises</label>
                 <div class="row">
-                    <div class="col s4 m4 l4"><button class="btn">-</button></div>
+                    <div class="col s4 m4 l4"><button class="btn" onclick="assign('s', false)">-</button></div>
                     <div class="col s4 m4 l4"><span id="levites-s">0</span></div>
-                    <div class="col s4 m4 l4"><button class="btn">+</button></div>
+                    <div class="col s4 m4 l4"><button class="btn"onclick="assign('s', true)">+</button></div>
                 </div>
 
-
                 <label>Seek Direction</label>
-                  <div class="switch">
-                    <label>
-                      0
-                      <input id="seek_direction" type="checkbox">
-                      <span class="lever"></span>
-                      1
-                    </label>
-                  </div>
+                <div class="row">
+                    <div class="col s4 m4 l4"><button class="btn" onclick="assign('sd', false)">-</button></div>
+                    <div class="col s4 m4 l4"><span id="levites-sd">0</span></div>
+                    <div class="col s4 m4 l4"><button class="btn"onclick="assign('sd', true)">+</button></div>
+                </div>
         </form>
     </div>
 </div>
 
+<script>
+    const sp_el = document.querySelector("#slider-sp")
+    const f_el = document.querySelector("#slider-f")
+    const cp_el = document.querySelector("#slider-cp")
+    const isFaithful_el = document.querySelector("#is-faithful")
+    const freeLevites_el = document.querySelector("#free-levites")
+
+    var freeLevites = {{ chosen_tribe.levites }}
+
+    console.log(freeLevites)
+
+    function updateFreeLevites() {
+        el = document.querySelector("#free-levites")
+        el.innerHTML = freeLevites
+    }
+
+    function assign(job, increase) {
+
+          el = document.querySelector("#levites-" + job)
+
+          if(freeLevites != 0 && increase){
+
+            freeLevites -= 1
+            el.innerHTML = parseInt(el.innerHTML) + 1
+
+            } else if(!increase && parseInt(el.innerHTML) > 0){
+
+            freeLevites += 1
+            el.innerHTML -= 1
+
+            }
+
+           updateFreeLevites()
+
+    }
+
+</script>
 
 
 {% endblock %}
